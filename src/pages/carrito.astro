@@ -1,0 +1,563 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Carrito de Compra - Bodegas Barbadillo">
+    <div class="page-header">
+        <div class="container">
+            <h1>Carrito de Compra</h1>
+            <p>Finaliza la compra de tus entradas para Bodegas Barbadillo</p>
+        </div>
+    </div>
+
+    <section class="cart-section">
+        <div class="container">
+            <div class="cart-container">
+                <div class="cart-items">
+                    <h2>Tus Entradas</h2>
+                    
+                    <div class="cart-item" id="cart-item-template" style="display: none;">
+                        <div class="item-image">
+                            <img src="" alt="" id="cart-item-image">
+                        </div>
+                        <div class="item-details">
+                            <h3 id="cart-item-title"></h3>
+                            <p class="item-description" id="cart-item-description"></p>
+                            <div class="item-quantity">
+                                <button class="quantity-btn minus">-</button>
+                                <input type="number" min="1" max="10" value="1" id="cart-item-quantity">
+                                <button class="quantity-btn plus">+</button>
+                            </div>
+                        </div>
+                        <div class="item-price">
+                            <span id="cart-item-price"></span>
+                            <button class="remove-item">Eliminar</button>
+                        </div>
+                    </div>
+                    
+                    <div id="cart-items-container">
+                        <!-- Los elementos del carrito se cargarán aquí dinámicamente -->
+                    </div>
+                    
+                    <div class="empty-cart" id="empty-cart-message">
+                        <p>Tu carrito está vacío</p>
+                        <a href="/tickets" class="btn btn-primary">Ver entradas disponibles</a>
+                    </div>
+                </div>
+                
+                <div class="cart-summary">
+                    <h2>Resumen</h2>                <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">0.00 €</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Gastos de gestión:</span>
+                        <span id="tax">0.00 €</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total:</span>
+                        <span id="total">0.00 €</span>
+                    </div>
+                    
+                    <form class="checkout-form">
+                        <div class="form-group">
+                            <label for="name">Nombre completo</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Teléfono</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        
+                        <div class="payment-options">
+                            <h3>Método de pago</h3>
+                            <div class="radio-group">
+                                <input type="radio" id="credit-card" name="payment" value="credit-card" checked>
+                                <label for="credit-card">Tarjeta de crédito/débito</label>
+                            </div>
+                            <div class="radio-group">
+                                <input type="radio" id="paypal" name="payment" value="paypal">
+                                <label for="paypal">PayPal</label>
+                            </div>
+                            <div class="radio-group">
+                                <input type="radio" id="transfer" name="payment" value="transfer">
+                                <label for="transfer">Transferencia bancaria</label>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-block">Finalizar Compra</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>
+
+<script>
+// Función para inicializar el carrito cuando carga la página
+document.addEventListener('DOMContentLoaded', function() {
+    // Recuperar los datos del carrito del sessionStorage
+    const cartData = sessionStorage.getItem('bodegasCart');
+    
+    if (cartData) {
+        try {
+            const cart: Cart = JSON.parse(cartData);
+            displayCartItems(cart);
+            updateCartSummary(cart);
+        } catch (error) {
+            console.error('Error al parsear el carrito:', error);
+            showEmptyCartMessage();
+        }
+    } else {
+        showEmptyCartMessage();
+    }    
+    // Event listener para los botones de cantidad
+    document.addEventListener('click', function(e) {
+        const target = e.target as HTMLElement;
+        
+        if (target && target.classList.contains('quantity-btn')) {
+            const parentNode = target.parentNode as HTMLElement;
+            if (!parentNode) return;
+            
+            const input = parentNode.querySelector('input') as HTMLInputElement;
+            if (!input) return;
+            
+            let value = parseInt(input.value || '1', 10);
+            
+            if (target.classList.contains('plus') && value < parseInt(input.max || '10', 10)) {
+                input.value = (value + 1).toString();
+            } else if (target.classList.contains('minus') && value > parseInt(input.min || '1', 10)) {
+                input.value = (value - 1).toString();
+            }
+            
+            // Actualizar el carrito
+            updateCartFromInputs();
+        }
+        
+        // Event listener para eliminar items
+        if (target && target.classList.contains('remove-item')) {
+            const itemElement = target.closest('.cart-item') as HTMLElement;
+            if (!itemElement) return;
+            
+            const itemId = itemElement.getAttribute('data-item-id') || '';
+            
+            removeItemFromCart(itemId);
+            itemElement.remove();
+            
+            // Comprobar si el carrito está vacío después de eliminar
+            const cartContainer = document.getElementById('cart-items-container');
+            if (cartContainer && !cartContainer.children.length) {
+                showEmptyCartMessage();
+            } else {
+                // Actualizar el resumen del carrito
+                updateCartFromInputs();
+            }
+        }
+    });
+    
+    // Event listener para el formulario de pago
+    const checkoutForm = document.querySelector('.checkout-form');
+    if (checkoutForm) {
+        checkoutForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('¡Gracias por tu compra! Recibirás un email con la confirmación de tu reserva.');
+            // Aquí iría la lógica para procesar el pago
+            sessionStorage.removeItem('bodegasCart');
+            window.location.href = '/';
+        });
+    }
+});
+
+// Función para mostrar los items del carrito
+function displayCartItems(cart: Cart) {
+    const container = document.getElementById('cart-items-container');
+    const template = document.getElementById('cart-item-template');
+    const emptyMessage = document.getElementById('empty-cart-message');
+    
+    if (!container || !template || !emptyMessage) return;
+    
+    // Ocultar el mensaje de carrito vacío
+    emptyMessage.style.display = 'none';
+    
+    // Limpiar el contenedor
+    container.innerHTML = '';
+    
+    // Añadir cada item al carrito
+    cart.items.forEach(item => {
+        const itemElement = template.cloneNode(true) as HTMLElement;
+        itemElement.style.display = '';
+        itemElement.setAttribute('data-item-id', item.id);
+        
+        // Actualizar detalles del item
+        const imgElement = itemElement.querySelector('#cart-item-image') as HTMLImageElement;
+        const titleElement = itemElement.querySelector('#cart-item-title');
+        const descElement = itemElement.querySelector('#cart-item-description');
+        const priceElement = itemElement.querySelector('#cart-item-price');
+        const quantityElement = itemElement.querySelector('#cart-item-quantity') as HTMLInputElement;
+        
+        if (imgElement) {
+            imgElement.src = item.image;
+            imgElement.alt = item.title;
+        }
+        if (titleElement) titleElement.textContent = item.title;
+        if (descElement) descElement.textContent = item.description || '';
+        if (priceElement) priceElement.textContent = `${item.price} €`;
+        if (quantityElement) quantityElement.value = item.quantity.toString();
+        
+        // Añadir al contenedor
+        container.appendChild(itemElement);
+    });
+}
+
+// Función para mostrar mensaje de carrito vacío
+function showEmptyCartMessage() {
+    const container = document.getElementById('cart-items-container');
+    const emptyMessage = document.getElementById('empty-cart-message');
+    const subtotalElement = document.getElementById('subtotal');
+    const managementFeeElement = document.getElementById('tax');
+    const totalElement = document.getElementById('total');
+    
+    if (container) container.innerHTML = '';
+    if (emptyMessage) emptyMessage.style.display = 'block';
+    
+    // Resetear el resumen
+    if (subtotalElement) subtotalElement.textContent = '0.00 €';
+    if (managementFeeElement) managementFeeElement.textContent = '0.00 €';
+    if (totalElement) totalElement.textContent = '0.00 €';
+}
+
+// Función para actualizar el resumen del carrito
+function updateCartSummary(cart: Cart) {
+    const subtotal = cart.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const managementFee = subtotal * 0.10; // 10% de gastos de gestión
+    const total = subtotal + managementFee;
+    
+    const subtotalElement = document.getElementById('subtotal');
+    const taxElement = document.getElementById('tax');
+    const totalElement = document.getElementById('total');
+    
+    if (subtotalElement) subtotalElement.textContent = `${subtotal.toFixed(2)} €`;
+    if (taxElement) taxElement.textContent = `${managementFee.toFixed(2)} €`;
+    if (totalElement) totalElement.textContent = `${total.toFixed(2)} €`;
+}
+
+// Función para actualizar el carrito basado en los inputs
+function updateCartFromInputs() {
+    const cartContainer = document.getElementById('cart-items-container');
+    if (!cartContainer) return;
+    
+    const cartItems = cartContainer.querySelectorAll('.cart-item');
+    const cart: Cart = { items: [] };
+    
+    cartItems.forEach((item) => {
+        const id = item.getAttribute('data-item-id') || '';
+        
+        // Obtener elementos del DOM con verificación de nulos
+        const titleElement = item.querySelector('#cart-item-title');
+        const priceElement = item.querySelector('#cart-item-price');
+        const quantityElement = item.querySelector('#cart-item-quantity');
+        const imageElement = item.querySelector('#cart-item-image');
+        const descriptionElement = item.querySelector('#cart-item-description');
+        
+        if (!titleElement || !priceElement || !quantityElement || !imageElement) return;
+        
+        // Extraer valores con verificaciones de seguridad
+        const title = titleElement.textContent || '';
+        
+        // Extraer el precio, eliminando el símbolo € y convertir a número
+        const priceText = priceElement.textContent || '0';
+        const price = parseFloat(priceText.replace('€', '').trim()) || 0;
+        
+        // Obtener cantidad (input de tipo número)
+        const quantity = parseInt((quantityElement as HTMLInputElement).value || '1', 10) || 1;
+        
+        // Obtener URL de la imagen
+        const image = (imageElement as HTMLImageElement).src || '';
+        
+        // Obtener descripción
+        const description = descriptionElement?.textContent || '';
+        
+        // Agregar al carrito solo si tenemos al menos id, título y precio
+        if (id && title && price > 0) {
+            cart.items.push({ id, title, price, quantity, image, description });
+        }
+    });
+    
+    sessionStorage.setItem('bodegasCart', JSON.stringify(cart));
+    updateCartSummary(cart);
+}
+
+// Definición de la interfaz para un item del carrito
+interface CartItem {
+    id: string;
+    title: string;
+    price: number;
+    quantity: number;
+    image: string;
+    description: string;
+}
+
+// Definición de la interfaz para el carrito
+interface Cart {
+    items: CartItem[];
+}
+
+// Función para eliminar un item del carrito
+function removeItemFromCart(itemId: string) {
+    const cartData = sessionStorage.getItem('bodegasCart');
+    
+    if (cartData) {
+        const cart: Cart = JSON.parse(cartData);
+        cart.items = cart.items.filter(item => item.id !== itemId);
+        sessionStorage.setItem('bodegasCart', JSON.stringify(cart));
+    }
+}
+</script>
+
+<style>    .page-header {
+        background: linear-gradient(83.21deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        color: white;
+        text-align: center;
+        padding: 4rem 2rem;
+    }
+
+    .page-header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .page-header p {
+        font-size: 1.2rem;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .cart-section {
+        padding: 4rem 0;
+    }
+
+    .cart-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    @media (min-width: 992px) {
+        .cart-container {
+            grid-template-columns: 2fr 1fr;
+        }
+    }
+
+    .cart-items {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        padding: 2rem;
+    }
+
+    .cart-items h2 {
+        margin-bottom: 1.5rem;
+        border-bottom: 1px solid #e2e8f0;
+        padding-bottom: 1rem;
+    }
+
+    .cart-item {
+        display: grid;
+        grid-template-columns: 100px 1fr auto;
+        gap: 1.5rem;
+        padding: 1.5rem 0;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    .item-image img {
+        width: 100%;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 4px;
+    }
+
+    .item-details h3 {
+        margin-bottom: 0.5rem;
+        font-size: 1.2rem;
+    }
+
+    .item-description {
+        color: var(--light-text);
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+
+    .item-quantity {
+        display: flex;
+        align-items: center;
+    }
+
+    .quantity-btn {
+        background: #f1f5f9;
+        border: none;
+        width: 30px;
+        height: 30px;
+        border-radius: 4px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .quantity-btn:hover {
+        background: #e2e8f0;
+    }
+
+    .item-quantity input {
+        width: 40px;
+        height: 30px;
+        text-align: center;
+        margin: 0 0.5rem;
+        border: 1px solid #e2e8f0;
+        border-radius: 4px;
+    }
+
+    .item-price {
+        text-align: right;
+        font-weight: bold;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .remove-item {
+        color: #ef4444;
+        background: none;
+        border: none;
+        font-size: 0.9rem;
+        cursor: pointer;
+    }
+
+    .remove-item:hover {
+        text-decoration: underline;
+    }
+
+    .cart-summary {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        padding: 2rem;
+        position: sticky;
+        top: 20px;
+    }
+
+    .cart-summary h2 {
+        margin-bottom: 1.5rem;
+        border-bottom: 1px solid #e2e8f0;
+        padding-bottom: 1rem;
+    }
+
+    .summary-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.8rem 0;
+        font-size: 1rem;
+    }
+
+    .summary-row.total {
+        border-top: 2px solid #e2e8f0;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    .checkout-form {
+        margin-top: 2rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="tel"] {
+        width: 100%;
+        padding: 0.8rem;
+        border: 1px solid #e2e8f0;
+        border-radius: 4px;
+        font-family: inherit;
+        font-size: 1rem;
+    }
+
+    .payment-options {
+        margin-bottom: 1.5rem;
+    }
+
+    .payment-options h3 {
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+    }
+
+    .radio-group {
+        margin-bottom: 0.8rem;
+    }
+
+    .radio-group input {
+        margin-right: 0.5rem;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 0.8rem 1.5rem;
+        border-radius: 30px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        font-family: 'Montserrat', sans-serif;
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn-primary {
+        background: var(--primary-color);
+        color: white;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+    }
+
+    .btn-block {
+        display: block;
+        width: 100%;
+    }
+
+    .empty-cart {
+        text-align: center;
+        padding: 3rem;
+    }
+
+    .empty-cart p {
+        margin-bottom: 1.5rem;
+        font-size: 1.1rem;
+        color: var(--light-text);
+    }
+
+    .checkbox {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .checkbox input {
+        margin-top: 0;
+    }
+</style>

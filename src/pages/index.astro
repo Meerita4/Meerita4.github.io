@@ -1,11 +1,211 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Bodegas Barbadillo - Inicio">
+	<section class="hero">
+		<div class="container">
+			<h1>Bienvenidos a <span>Barbadillo</span></h1>
+			<p>Más de 200 años de excelencia en el sector</p>
+			<div class="cta-buttons">
+				<a href="/historia" class="btn btn-primary">Nuestra Historia</a>
+				<a href="/tickets" class="btn btn-secondary">Comprar Tickets</a>
+				<a href="/contacto" class="btn btn-outline">Contactar</a>
+			</div>
+		</div>
+	</section>
+
+	<section class="features">
+		<div class="container">
+			<h2>Lo que nos hace diferentes</h2>
+			<div class="feature-grid">
+				<div class="feature-card">
+					<div class="icon">📈</div>
+					<h3>Trayectoria</h3>
+					<p>Más de dos décadas de experiencia y crecimiento constante en el mercado.</p>
+				</div>
+				<div class="feature-card">
+					<div class="icon">🤝</div>
+					<h3>Compromiso</h3>
+					<p>Dedicados a ofrecer el mejor servicio y soluciones adaptadas a cada cliente.</p>
+				</div>
+				<div class="feature-card">
+					<div class="icon">💡</div>
+					<h3>Innovación</h3>
+					<p>Siempre a la vanguardia, implementando las últimas tecnologías y métodos.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="about-preview">
+		<div class="container">
+			<div class="about-content">
+				<div class="about-text">
+					<h2>Nuestra Empresa</h2>
+					<p>Fundada en 1821 por Don Benigno Barbadillo, nuestra bodega cuenta con más de 200 años de historia y tradición vinícola, creando vinos excepcionales que representan la esencia de Sanlúcar de Barrameda.</p>
+					<p>Hoy en día, tras siete generaciones, seguimos siendo una empresa familiar dedicada a la calidad y excelencia, siendo los mayores productores de manzanilla en la región.</p>
+					<a href="/historia" class="btn btn-outline">Conoce nuestra historia completa</a>
+				</div>
+				<div class="about-image">
+					<img src="/src/imagenes/barbadillo-footer.jpg" alt="Bodegas Barbadillo">
+				</div>
+		</div>
+	</section>
 </Layout>
+
+<style>
+	.hero {
+		
+		background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), var(--primary-color);
+		background-size: cover;
+		background-position: center;
+		color: white;
+		text-align: center;
+		padding: 8rem 2rem;
+	}
+
+	.hero h1 {
+		font-size: 3rem;
+		margin-bottom: 1rem;
+	}
+
+	.hero h1 span {
+		color: var(--secondary-color);
+	}
+
+	.hero p {
+		font-size: 1.2rem;
+		margin-bottom: 2rem;
+	}
+
+	.cta-buttons {
+		display: flex;
+		justify-content: center;
+		gap: 1rem;
+	}
+
+	.btn {
+		display: inline-block;
+		padding: 0.8rem 1.5rem;
+		border-radius: 30px;
+		font-weight: 600;
+		transition: all 0.3s ease;
+		font-family: 'Montserrat', sans-serif;
+	}
+
+	.btn-primary {
+		background: linear-gradient(83.21deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+		color: white;
+		box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+	}
+
+	.btn-primary:hover {
+		transform: translateY(-3px);
+		box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+	}
+
+	.btn-secondary {
+		background: var(--secondary-color);
+		color: white;
+		box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+	}
+
+	.btn-secondary:hover {
+		background: var(--secondary-color);
+		transform: translateY(-3px);
+		box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+	}
+
+	.btn-outline {
+		background: transparent;
+		color: white;
+		border: 2px solid white;
+	}
+
+	.btn-outline:hover {
+		background: rgba(255, 255, 255, 0.1);
+	}
+
+	.features {
+		padding: 5rem 0;
+		background-color: var(--light-bg);
+		text-align: center;
+	}
+
+	.features h2 {
+		margin-bottom: 3rem;
+		font-size: 2rem;
+	}
+
+	.feature-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 2rem;
+	}
+
+	.feature-card {
+		background: white;
+		padding: 2rem;
+		border-radius: 8px;
+		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+		transition: transform 0.3s;
+	}
+
+	.feature-card:hover {
+		transform: translateY(-5px);
+	}
+
+	.icon {
+		font-size: 2.5rem;
+		margin-bottom: 1rem;
+	}
+
+	.about-preview {
+		padding: 5rem 0;
+	}
+
+	.about-content {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 3rem;
+		align-items: center;
+	}
+
+	.about-text p {
+		margin-bottom: 1rem;
+		line-height: 1.6;
+	}
+
+	.about-image img {
+		width: 100%;
+		border-radius: 8px;
+		box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+	}
+
+	@media (max-width: 768px) {
+		.hero h1 {
+			font-size: 2.2rem;
+		}
+
+		.about-content {
+			grid-template-columns: 1fr;
+		}
+
+		.about-image {
+			order: -1;
+		}
+
+		.cta-buttons {
+			flex-direction: column;
+			align-items: center;
+		}
+
+		.btn {
+			width: 100%;
+			max-width: 300px;
+			text-align: center;
+			margin-bottom: 1rem;
+		}
+	}
+</style>

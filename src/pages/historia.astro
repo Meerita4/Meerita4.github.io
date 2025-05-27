@@ -1,0 +1,315 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Nuestra Historia - Bodegas Barbadillo">
+    <div class="page-header">
+        <div class="container">
+            <h1>Nuestra Historia</h1>
+            <p>Un recorrido por nuestros orígenes y evolución hasta convertirnos en líderes del sector</p>
+        </div>
+    </div>
+
+    <section class="history-highlight">
+        <div class="container">
+            <h2>Bodegas Barbadillo</h2>
+            <p>Las Bodegas Barbadillo fueron fundadas en 1821 por Don Benigno Barbadillo. Con 17 años Don Benigno marcha de Covarrubias a México donde va a permanecer durante 21 años. Regresa a España poco después de la guerra de independencia de México, llega a Sanlúcar y poco después compró una bodega que hoy llamamos "el Toro". Esta fue la primera bodega que tuvo Barbadillo, hoy en día hay 16 bodegas situadas todas en Sanlúcar, la mayoría en el casco antiguo rodeando el Castillo de Santiago, 14 están reconocidas como edificio de históricos por el ayuntamiento, además las oficinas están situadas en la casa Palacio de La Cilla construida en 1773.</p>
+            <p>Hoy día y tras 7 generaciones Barbadillo sigue siendo una empresa independiente perteneciendo al cien por cien a los descendientes de Don Benigno, en estas bodegas hay más de 35.000 vasijas, es la mayor empresa bodeguera de Sanlúcar, caracterizándose por tener productos de primera calidad, también son los mayores productores de manzanilla, aunque en su bodega también se cría toda la gama de vinos del marco de Jerez.</p>
+        </div>
+    </section>
+
+    <section class="timeline-section">
+        <div class="container">
+            <div class="intro">
+                <h2>Nuestra Trayectoria</h2>
+                <p>Desde nuestros humildes inicios hasta convertirnos en una empresa referente en el sector, este es nuestro viaje a través del tiempo.</p>
+            </div>
+            
+            <div class="timeline">                <div class="timeline-item">
+                    <div class="year">1821</div>
+                    <div class="content">
+                        <h3>Los inicios</h3>
+                        <p>Don Benigno Barbadillo funda las Bodegas Barbadillo en Sanlúcar tras regresar de México, donde vivió durante 21 años. La primera bodega, conocida como "el Toro", marcó el inicio de lo que se convertiría en una tradición familiar de excelencia vinícola.</p>
+                    </div>
+                </div>                <div class="timeline-item">
+                    <div class="year">2003</div>
+                    <div class="content">
+                        <h3>Primera expansión</h3>
+                        <p>Tras cinco años de crecimiento constante, abrimos nuestra primera sucursal en la capital. Este fue un momento crucial que marcó el inicio de nuestra expansión nacional. Nuestro equipo creció a 15 personas y comenzamos a ampliar nuestra cartera de servicios.</p>
+                    </div>
+                </div>                <div class="timeline-item">
+                    <div class="year">2008</div>
+                    <div class="content">
+                        <h3>Innovación y crecimiento</h3>
+                        <p>Implementamos nuevas tecnologías que revolucionaron nuestra forma de trabajar. A pesar de la crisis económica global, logramos mantener un crecimiento sostenido gracias a nuestra capacidad de adaptación e innovación. Este año también lanzamos nuestro programa de responsabilidad social empresarial.</p>
+                    </div>
+                </div>                <div class="timeline-item">
+                    <div class="year">2015</div>
+                    <div class="content">
+                        <h3>Reconocimiento nacional</h3>
+                        <p>Recibimos el prestigioso premio "Empresa del Año" por nuestro compromiso con la calidad y la innovación. Este reconocimiento nos posicionó definitivamente como líderes en nuestro sector. Nuestro equipo ya superaba las 50 personas y contábamos con presencia en 10 ciudades del país.</p>
+                    </div>
+                </div>                <div class="timeline-item">
+                    <div class="year">2020</div>
+                    <div class="content">
+                        <h3>Adaptación en tiempos difíciles</h3>
+                        <p>La pandemia global supuso un reto sin precedentes. Rápidamente digitalizamos nuestros procesos y desarrollamos nuevas líneas de negocio adaptadas a las necesidades emergentes. Esta capacidad de reinvención nos permitió no solo sobrevivir, sino fortalecer nuestra posición en el mercado.</p>
+                    </div>
+                </div>                <div class="timeline-item">
+                    <div class="year">2025</div>
+                    <div class="content">
+                        <h3>Actualidad y futuro</h3>
+                        <p>Hoy contamos con más de 100 empleados, presencia en todo el país y clientes internacionales. Nuestro compromiso con la calidad, la innovación y la sostenibilidad sigue siendo el motor que impulsa nuestro crecimiento. Miramos al futuro con ambiciosos planes de expansión internacional y el desarrollo de soluciones cada vez más avanzadas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>
+
+<style>    .page-header {
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/src/imagenes/IMG_4105.jpg');
+        background-size: cover;
+        background-position: center;
+        color: white;
+        text-align: center;
+        padding: 6rem 2rem;
+    }
+
+    .page-header h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .page-header p {
+        font-size: 1.2rem;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .history-highlight {
+        background-color: var(--light-bg);
+        padding: 3rem;
+        border-radius: 10px;
+        margin-bottom: 4rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        border-left: 5px solid var(--primary-color);
+    }
+
+    .history-highlight h2 {
+        color: var(--primary-color);
+        margin-bottom: 1.5rem;
+        font-size: 2rem;
+    }
+
+    .history-highlight p {
+        margin-bottom: 1.5rem;
+        line-height: 1.8;
+    }
+
+    .timeline-section {
+        padding: 5rem 0;
+    }
+
+    .intro {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto 4rem;
+    }
+
+    .timeline {
+        position: relative;
+    }
+
+    .timeline::before {
+        content: '';
+        position: absolute;
+        width: 4px;
+        background: var(--primary-color);
+        top: 0;
+        bottom: 0;
+        left: 50px;
+        margin-left: -2px;
+    }
+
+    .timeline-item {
+        padding: 2rem 0;
+        position: relative;
+    }
+
+    .year {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        background: linear-gradient(83.21deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: 700;
+        z-index: 1;
+    }
+
+    .content {
+        margin-left: 150px;
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .content h3 {
+        margin-top: 0;
+        color: var(--primary-color);
+    }    .content p {
+        margin-bottom: 0;
+        line-height: 1.6;
+    }
+
+    .founders {
+        background-color: var(--light-bg);
+        padding: 5rem 0;
+        text-align: center;
+    }
+
+    .founders h2 {
+        margin-bottom: 3rem;
+    }
+
+    .founder-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    .founder-card {
+        background: white;
+        border-radius: 8px;
+        padding: 2rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .founder-image {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 auto 1.5rem;
+    }
+
+    .founder-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .founder-card h3 {
+        margin-bottom: 0.5rem;
+    }
+
+    .founder-card .title {
+        color: var(--secondary-color);
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+
+    .founder-card .bio {
+        line-height: 1.6;
+    }
+
+    .values {
+        padding: 5rem 0;
+        text-align: center;
+    }
+
+    .values h2 {
+        margin-bottom: 3rem;
+    }
+
+    .values-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+    }
+
+    .value-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s;
+    }
+
+    .value-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .value-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .cta {
+        background: linear-gradient(83.21deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        color: white;
+        text-align: center;
+        padding: 5rem 2rem;
+    }
+
+    .cta h2 {
+        margin-bottom: 1rem;
+    }
+
+    .cta p {
+        margin-bottom: 2rem;
+        font-size: 1.2rem;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 0.8rem 1.5rem;
+        border-radius: 30px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .btn-primary {
+        background: white;
+        color: var(--primary-color);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+    }
+
+    @media (max-width: 768px) {
+        .page-header h1 {
+            font-size: 2.2rem;
+        }
+
+        .timeline::before {
+            left: 30px;
+        }
+
+        .year {
+            width: 60px;
+            height: 60px;
+            font-size: 1rem;
+        }
+
+        .content {
+            margin-left: 90px;
+        }
+
+        .founder-cards {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

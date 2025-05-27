@@ -1,0 +1,142 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Video Promocional - Bodegas Barbadillo">
+    <div class="page-header">
+        <div class="container">
+            <h1>Video Promocional</h1>
+        </div>
+    </div>
+
+    <section class="video-section">
+        <div class="container">            <div class="video-container">
+                <video controls autoplay muted>
+                    <source src="/videos/video.mp4" type="video/mp4">
+                    Tu navegador no soporta la reproducción de videos.
+                </video>
+            </div>
+    
+        </div>
+    </section>
+</Layout>
+
+<style>
+    .page-header {
+        background: linear-gradient(83.21deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        color: white;
+        text-align: center;
+        padding: 6rem 2rem;
+    }
+
+    .page-header h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .page-header p {
+        font-size: 1.2rem;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .video-section {
+        padding: 5rem 0;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+
+    .video-container {
+        position: relative;
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto 2rem;
+        border-radius: 8px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+
+    .video-container video {
+        display: block;
+        width: 100%;
+        border-radius: 8px;
+    }
+
+    .video-description {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .video-description h2 {
+        margin-bottom: 1.5rem;
+        color: var(--primary-color);
+    }
+
+    .video-description p {
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+    }
+
+    .cta-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 0.8rem 1.5rem;
+        border-radius: 30px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        font-family: 'Montserrat', sans-serif;
+        text-decoration: none;
+    }
+
+    .btn-primary {
+        background: linear-gradient(83.21deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        color: white;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+    }
+
+    .btn-secondary {
+        background: var(--secondary-color);
+        color: white;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-secondary:hover {
+        background: var(--secondary-color);
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    @media (max-width: 768px) {
+        .page-header h1 {
+            font-size: 2.2rem;
+        }
+        
+        .cta-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .btn {
+            width: 100%;
+            max-width: 250px;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+    }
+</style>
