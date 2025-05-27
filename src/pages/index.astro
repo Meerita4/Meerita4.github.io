@@ -15,6 +15,24 @@ import Layout from '../layouts/Layout.astro';
 		</div>
 	</section>
 
+	<section class="video-section">
+		<div class="container">
+			<h2>Video Promocional</h2>
+			<div class="video-link-container">
+				<div class="video-thumbnail">
+					<img src="/imagenes/IMG_4105.jpg" alt="Vista previa del video de Bodegas Barbadillo">
+					<div class="play-button-overlay">
+						<a href="https://www.canva.com/design/DAGop0xfGZA/2YKf-axtxFJlAU4OCkeUKg/edit?utm_content=DAGop0xfGZA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank" class="play-button">
+							<span class="play-icon">▶</span>
+							<span class="play-text">Ver presentación</span>
+						</a>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</section>
+
 	<section class="features">
 		<div class="container">
 			<h2>Lo que nos hace diferentes</h2>
@@ -125,6 +143,88 @@ import Layout from '../layouts/Layout.astro';
 
 	.btn-outline:hover {
 		background: rgba(255, 255, 255, 0.1);
+	}
+
+	.video-section {
+		padding: 5rem 0;
+		background-color: #f8f9fa;
+		text-align: center;
+	}
+
+	.video-section h2 {
+		margin-bottom: 2rem;
+		font-size: 2rem;
+		color: var(--primary-color);
+	}
+
+	.video-link-container {
+		max-width: 800px;
+		margin: 0 auto;
+	}
+
+	.video-thumbnail {
+		position: relative;
+		border-radius: 8px;
+		overflow: hidden;
+		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+		margin-bottom: 1.5rem;
+		cursor: pointer;
+		transition: transform 0.3s ease;
+	}
+
+	.video-thumbnail:hover {
+		transform: scale(1.02);
+	}
+
+	.video-thumbnail img {
+		width: 100%;
+		display: block;
+		border-radius: 8px;
+	}
+
+	.play-button-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: rgba(0, 0, 0, 0.3);
+		transition: background 0.3s ease;
+	}
+
+	.video-thumbnail:hover .play-button-overlay {
+		background: rgba(0, 0, 0, 0.5);
+	}
+
+	.play-button {
+		background: rgba(255, 255, 255, 0.9);
+		color: var(--primary-color);
+		border-radius: 50px;
+		padding: 1rem 2rem;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		text-decoration: none;
+		font-weight: 600;
+		transition: transform 0.3s ease;
+	}
+
+	.play-button:hover {
+		transform: scale(1.05);
+	}
+
+	.play-icon {
+		font-size: 1.2rem;
+	}
+
+	.video-description {
+		color: var(--light-text);
+		margin: 0 auto;
+		max-width: 600px;
+		line-height: 1.6;
 	}
 
 	.features {
