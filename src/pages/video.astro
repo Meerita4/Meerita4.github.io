@@ -1,0 +1,179 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Video Promocional - Bodegas Barbadillo">
+    <div class="page-header">
+        <div class="container">
+            <h1>Video Promocional</h1>
+            <p>Conoce Bodegas Barbadillo en nuestra presentación</p>
+        </div>
+    </div>
+
+    <section class="video-section">
+        <div class="container">
+            <div class="video-presentation">
+                <div class="video-container">
+                    <div class="video-responsive">
+                        <a href="https://www.canva.com/design/DAGop0xfGZA/2YKf-axtxFJlAU4OCkeUKg/edit?utm_content=DAGop0xfGZA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" 
+                           target="_blank" 
+                           class="canva-link">
+                            <img src="/Portfolio/imagenes/IMG_4105.jpg" alt="Vista previa del video de Bodegas Barbadillo">
+                            <div class="play-button">
+                                <span class="play-icon">▶</span>
+                                <span>Ver presentación en Canva</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="video-description">
+                    <h2>Nuestra Historia en Video</h2>
+                    <p>Disfruta de nuestra presentación donde podrás conocer más sobre la historia de Bodegas Barbadillo, nuestros productos y la experiencia que ofrecemos a nuestros visitantes.</p>
+                    <p>La presentación incluye:</p>
+                    <ul>
+                        <li>Historia de la bodega desde 1821</li>
+                        <li>Proceso de elaboración de nuestros vinos</li>
+                        <li>Experiencias y visitas disponibles</li>
+                        <li>Imágenes de nuestras instalaciones</li>
+                    </ul>
+                    <a href="/Portfolio/tickets" class="btn btn-primary">Reserva tu visita ahora</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>
+
+<style>
+    .page-header {
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/Portfolio/imagenes/IMG_4105.jpg');
+        background-size: cover;
+        background-position: center;
+        color: white;
+        text-align: center;
+        padding: 6rem 2rem;
+    }
+
+    .page-header h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .page-header p {
+        font-size: 1.2rem;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .video-section {
+        padding: 4rem 0;
+    }
+
+    .video-presentation {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+    }
+
+    @media (max-width: 768px) {
+        .video-presentation {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .video-container {
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .video-responsive {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+        height: 0;
+    }
+
+    .canva-link {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+
+    .canva-link img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .play-button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(26, 135, 84, 0.9);
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .play-icon {
+        font-size: 1.5rem;
+    }
+
+    .canva-link:hover .play-button {
+        background-color: var(--primary-color);
+        transform: translate(-50%, -50%) scale(1.05);
+    }
+
+    .video-description {
+        padding: 1rem;
+    }
+
+    .video-description h2 {
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+    }
+
+    .video-description p {
+        margin-bottom: 1rem;
+        line-height: 1.6;
+    }
+
+    .video-description ul {
+        margin-bottom: 2rem;
+        padding-left: 1.5rem;
+    }
+
+    .video-description ul li {
+        margin-bottom: 0.5rem;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        font-weight: 600;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .btn-primary {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+    }
+
+    .btn-primary:hover {
+        background-color: #15704f;
+    }
+</style>

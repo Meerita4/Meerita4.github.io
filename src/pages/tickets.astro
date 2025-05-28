@@ -26,12 +26,11 @@ import Layout from '../layouts/Layout.astro';
                         <div class="ticket-price">
                             <span class="price">50€</span>
                             <span class="per-person">por persona</span>
-                        </div>
-                        <button class="btn btn-primary btn-block add-to-cart" 
+                        </div>                        <button class="btn btn-primary btn-block add-to-cart" 
                             data-item-id="general" 
                             data-item-title="Entrada General" 
                             data-item-price="50" 
-                            data-item-image="/src/imagenes/IMG_6022.jpg">Reservar ahora</button>
+                            data-item-image="/Portfolio/imagenes/IMG_6022.jpg">Reservar ahora</button>
                     </div>
                 </div>
                 
@@ -41,12 +40,11 @@ import Layout from '../layouts/Layout.astro';
                         <div class="ticket-price">
                             <span class="price">100€</span>
                             <span class="per-person">por persona</span>
-                        </div>
-                        <button class="btn btn-primary btn-block add-to-cart" 
+                        </div>                        <button class="btn btn-primary btn-block add-to-cart" 
                             data-item-id="vip" 
                             data-item-title="Entrada VIP" 
                             data-item-price="100" 
-                            data-item-image="/src/imagenes/IMG_6023.jpg" 
+                            data-item-image="/Portfolio/imagenes/IMG_6023.jpg" 
                             data-item-description="Experiencia exclusiva con acceso a zonas privadas de la bodega">Reservar ahora</button>
                     </div>
                 </div>
@@ -119,9 +117,8 @@ import Layout from '../layouts/Layout.astro';
             
             // Mostrar feedback al usuario
             alert(`${itemTitle} añadida al carrito`);
-            
-            // Redirigir al carrito
-            window.location.href = '/carrito';
+              // Redirigir al carrito
+            window.location.href = '/Portfolio/carrito';
         });
     });
 </script>
@@ -167,7 +164,7 @@ import Layout from '../layouts/Layout.astro';
 
     .tickets-hero-image {
         height: 400px;
-        background-image: url('/src/imagenes/IMG_4105.jpg');
+        background-image: url('/Portfolio/imagenes/IMG_4105.jpg');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;

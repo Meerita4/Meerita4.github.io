@@ -38,10 +38,9 @@ import Layout from '../layouts/Layout.astro';
                     <div id="cart-items-container">
                         <!-- Los elementos del carrito se cargarán aquí dinámicamente -->
                     </div>
-                    
-                    <div class="empty-cart" id="empty-cart-message">
+                      <div class="empty-cart" id="empty-cart-message">
                         <p>Tu carrito está vacío</p>
-                        <a href="/tickets" class="btn btn-primary">Ver entradas disponibles</a>
+                        <a href="/Portfolio/tickets" class="btn btn-primary">Ver entradas disponibles</a>
                     </div>
                 </div>
                 
@@ -164,12 +163,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Event listener para el formulario de pago
     const checkoutForm = document.querySelector('.checkout-form');
     if (checkoutForm) {
-        checkoutForm.addEventListener('submit', function(e) {
-            e.preventDefault();
+        checkoutForm.addEventListener('submit', function(e) {            e.preventDefault();
             alert('¡Gracias por tu compra! Recibirás un email con la confirmación de tu reserva.');
             // Aquí iría la lógica para procesar el pago
             sessionStorage.removeItem('bodegasCart');
-            window.location.href = '/';
+            window.location.href = '/Portfolio/';
         });
     }
 });
