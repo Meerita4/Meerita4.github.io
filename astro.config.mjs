@@ -2,7 +2,9 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  base: '/Portfolio/',
+  site: 'https://meerita4.github.io',
+  base: '/Portfolio',
   outDir: './dist',
+  trailingSlash: 'always',
 });
 

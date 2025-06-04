@@ -116,9 +116,8 @@ import Layout from '../layouts/Layout.astro';
             sessionStorage.setItem('bodegasCart', JSON.stringify(cart));
             
             // Mostrar feedback al usuario
-            alert(`${itemTitle} añadida al carrito`);
-              // Redirigir al carrito
-            window.location.href = '/Portfolio/carrito';
+            alert(`${itemTitle} añadida al carrito`);            // Redirigir al carrito
+            window.location.href = '/Portfolio/carrito/';
         });
     });
 </script>

@@ -6,13 +6,23 @@ const { title = "Historia de Empresa" } = Astro.props;
 <html lang="es">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href="/Portfolio/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
 		<title>{title}</title>
+		<style is:global>
+			:root {
+				--primary-color: #1a8754;
+				--secondary-color: #4ade80;
+				--text-color: #333;
+				--light-text: #666;
+				--background: #fff;
+				--light-bg: #f0faf0;
+			}
+		</style>
 	</head>
 	<body>
 		<header>
@@ -23,9 +33,9 @@ const { title = "Historia de Empresa" } = Astro.props;
 				<nav>
 					<ul>
 						<li><a href="/Portfolio/">Inicio</a></li>
-						<li><a href="/Portfolio/historia">Nuestra Historia</a></li>
-						<li><a href="/Portfolio/tickets">Tickets</a></li>
-						<li><a href="/Portfolio/carrito" class="cart-link"></span> Carrito</a></li>
+						<li><a href="/Portfolio/historia/">Nuestra Historia</a></li>
+						<li><a href="/Portfolio/tickets/">Tickets</a></li>
+						<li><a href="/Portfolio/carrito/" class="cart-link"></span> Carrito</a></li>
 				
 					</ul>
 				</nav>
@@ -53,8 +63,8 @@ const { title = "Historia de Empresa" } = Astro.props;
 					<div class="footer-section">
 						<h3>Enlaces rápidos</h3>
 						<ul>
-							<li><a href="/Portfolio/historia">Nuestra Historia</a></li>
-							<li><a href="/Portfolio/tickets">Tickets</a></li>
+							<li><a href="/Portfolio/historia/">Nuestra Historia</a></li>
+							<li><a href="/Portfolio/tickets/">Tickets</a></li>
 						</ul>
 					</div>
 				</div>
@@ -82,16 +92,26 @@ const { title = "Historia de Empresa" } = Astro.props;
 		box-sizing: border-box;
 	}
 	
-	html,
+	html {
+		box-sizing: border-box;
+		font-size: 16px;
+	}
+	
+	*, *:before, *:after {
+		box-sizing: inherit;
+	}
+	
 	body {
 		margin: 0;
 		padding: 0;
 		width: 100%;
-		min-height: 100%;
+		min-height: 100vh;
 		font-family: 'Open Sans', sans-serif;
 		color: var(--text-color);
 		background-color: var(--background);
 		overflow-x: hidden;
+		display: flex;
+		flex-direction: column;
 	}
 	
 	.container {
@@ -160,11 +180,12 @@ const { title = "Historia de Empresa" } = Astro.props;
 	}
 	
 	main {
-		min-height: 70vh;
+		flex: 1 0 auto;
 		display: block;
 		width: 100%;
-		clear: both;
-		overflow: hidden;
+		overflow: visible;
+		position: relative;
+		z-index: 1;
 	}
 	
 	footer {
@@ -172,7 +193,9 @@ const { title = "Historia de Empresa" } = Astro.props;
 		padding: 3rem 0 1rem;
 		margin-top: 3rem;
 		width: 100%;
-		clear: both;
+		flex-shrink: 0;
+		position: relative;
+		z-index: 1;
 	}
 	
 	.footer-content {
